@@ -10,8 +10,14 @@ import SwiftUI
 @main
 struct AutomaticTaggingToolApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        WindowGroup("Home") {
+            HomeView()
+        }
+        
+        WindowGroup("Project", for: Project.self) { project in
+            if let project = project.wrappedValue {
+                ProjectView(project: project)
+            }
         }
     }
 }
