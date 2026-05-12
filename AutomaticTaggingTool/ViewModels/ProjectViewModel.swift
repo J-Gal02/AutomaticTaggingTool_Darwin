@@ -4,6 +4,7 @@
 //
 //  Created by jared on 12/5/2026.
 //
+import SwiftUI
 
 @Observable
 class ProjectViewModel {
@@ -15,11 +16,20 @@ class ProjectViewModel {
         switch result {
         case .success(let url):
             videoURL = url
-            Task {await AudioExtractor.extract(from: url) }
+            Task {await extractAudio(from: url) }
         case .failure(let error):
             print(error)
         }
     }
     
+    private func extractAudio(from url: URL) async {
+        isProcessing = true
+        do {
+            audioURL = try await AudioExtractor.extract(from: url)
+        } catch {
+            print(error)
+        }
+        isProcessing = false
+    }
     
 }

@@ -9,6 +9,7 @@ import AVFoundation
 
 struct AudioExtractor{
     static func extract(from videoURL: URL) async throws -> URL {
+        print("Video URL at \(videoURL)")
         return videoURL
         
     }
