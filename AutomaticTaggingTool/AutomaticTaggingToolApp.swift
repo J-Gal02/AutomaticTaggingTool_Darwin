@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct AutomaticTaggingToolApp: App {
+    @FocusedValue(\.projectViewModel) var projectViewModel
+    
     var body: some Scene {
         WindowGroup("Home") {
             HomeView()
@@ -19,5 +21,13 @@ struct AutomaticTaggingToolApp: App {
                 ProjectView(project: project)
             }
         }
+        .commands {
+                    CommandGroup(replacing: .newItem) {
+                        Button("Import Media...") {
+                            projectViewModel?.importMedia()
+                        }
+                        .disabled(projectViewModel == nil)
+                    }
+                }
     }
 }

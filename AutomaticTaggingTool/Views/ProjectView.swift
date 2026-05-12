@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ProjectView: View {
-    var project: Project
+    
+    @State private var viewModel: ProjectViewModel
     @State private var selectedTool: ProjectTool? = .audio
+    var project: Project
+
+    init(project: Project) {
+        self.project = project
+        self.viewModel = ProjectViewModel(project: project)
+    }
     
     var body: some View {
         NavigationSplitView {
@@ -18,7 +25,8 @@ struct ProjectView: View {
                 Label("Audio", systemImage: "waveform")
                     .tag(ProjectTool.audio)
             }
-        } detail: {
+        }
+        detail: {
             // main area
             switch selectedTool {
             case .audio:
@@ -31,7 +39,9 @@ struct ProjectView: View {
             case .none:
                 Text("Select a tool")
             }
+            
         }
+        .focusedSceneValue(\.projectViewModel, viewModel)
     }
 }
 

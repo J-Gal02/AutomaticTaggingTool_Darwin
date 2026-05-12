@@ -10,6 +10,7 @@ import Foundation
 struct Project: Codable, Hashable {
     var name: String
     var directory: URL
+    var directoryBookmark: Data?
     var createdAt: Date
     var modifiedAt: Date
     var mediaFiles: [MediaFile]

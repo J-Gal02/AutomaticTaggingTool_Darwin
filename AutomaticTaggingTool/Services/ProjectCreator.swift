@@ -24,9 +24,18 @@ struct ProjectCreator {
             print("Created subfolder: \(folder)")
         }
         
+        // Generate Bookmark (Apple security BS)
+        
+        let bookmarkData = try folderURL.bookmarkData(
+            options: .withSecurityScope,
+            includingResourceValuesForKeys: nil,
+            relativeTo: nil
+        )
+        
+        
         //Create Project Struct
         let project = Project(
-            name: name, directory: folderURL, createdAt: Date(), modifiedAt: Date(), mediaFiles: []
+            name: name, directory: folderURL, directoryBookmark: bookmarkData, createdAt: Date(), modifiedAt: Date(), mediaFiles: []
         )
         
         //Encode Struct to JSON

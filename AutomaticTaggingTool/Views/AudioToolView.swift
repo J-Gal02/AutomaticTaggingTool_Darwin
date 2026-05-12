@@ -12,5 +12,8 @@ struct AudioToolView: View {
     
     var body: some View {
         Text("Audio Tool")
+        Text(project.name)
+        Text(project.directory.path())
+        
     }
 }
