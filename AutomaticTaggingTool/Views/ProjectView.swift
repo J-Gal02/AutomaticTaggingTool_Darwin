@@ -14,3 +14,7 @@ struct ProjectView: View {
         Text(project.name)
     }
 }
+
+#Preview {
+    
+}

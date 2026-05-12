@@ -34,22 +34,6 @@ class ProjectViewModel {
         isProcessing = false
     }
     
-    private func handleProjectCreation(_ result: Result<URL, Error> ) {
-        switch result {
-        case .success(let url):
-            projectDir = url
-            Task {await createProject(from: url)}
-        case .failure(let error):
-            print(error)
-        }
-    }
-    private func createProject(from url: URL) async {
-        do {
-            projectDir = try await ProjectCreator.createdir(from: url)
-        }
-        catch {
-            print(error)
-        }
-    }
+    
     
 }
